@@ -16,6 +16,39 @@
 
   <body>
     <div id="root"></div>
+    <!-- Inline early error catcher: displays a plain overlay if any runtime error happens before React mounts -->
+    <script>
+      (function () {
+        function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+        function showOverlay(msg, stack){
+          try{
+            var id = '__early_error__';
+            var el = document.getElementById(id);
+            if (!el) {
+              el = document.createElement('div');
+              el.id = id;
+              el.style.position = 'fixed';
+              el.style.inset = '0';
+              el.style.background = 'rgba(0,0,0,0.85)';
+              el.style.color = 'white';
+              el.style.padding = '20px';
+              el.style.zIndex = '2147483647';
+              el.style.fontFamily = 'monospace';
+              el.style.overflow = 'auto';
+              document.body.appendChild(el);
+            }
+            el.innerHTML = '<h2 style="margin-top:0">Application error</h2><pre style="white-space:pre-wrap;color:#fff">' + escapeHtml(msg) + '</pre>' + (stack?('<details style="margin-top:12px;color:#ddd"><summary>Stack trace</summary><pre style="white-space:pre-wrap;color:#ddd">'+escapeHtml(stack)+'</pre></details>'):'');
+          }catch(e){/* ignore */}
+        }
+
+        window.addEventListener('error', function (ev) {
+          try{ var m = ev.error ? (ev.error.stack || ev.error.message || String(ev.error)) : (ev.message || 'Unknown error'); showOverlay(m, ev.error && ev.error.stack ? ev.error.stack : undefined); }catch(e){}
+        });
+        window.addEventListener('unhandledrejection', function (ev) {
+          try{ var r = ev.reason ? (ev.reason.stack || ev.reason.message || String(ev.reason)) : String(ev); showOverlay(r, ev.reason && ev.reason.stack ? ev.reason.stack : undefined); }catch(e){}
+        });
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
