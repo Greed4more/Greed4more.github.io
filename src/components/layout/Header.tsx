@@ -7,6 +7,7 @@ const navLinks = [
   { path: '/how-it-works', label: 'How It Works' },
   { path: '/features', label: 'Features' },
   { path: '/dashboard', label: 'Dashboard' },
+  { path: '/rewards', label: 'Rewards' },
   { path: '/about', label: 'About' },
 ];
 

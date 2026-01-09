@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
+import RewardsWidget from '@/components/dashboard/RewardsWidget';
 import { 
   MapPin, 
   Gauge, 
@@ -239,14 +240,14 @@ const Dashboard = () => {
             </div>
 
             {/* Bottom row */}
-            <div className="mt-6">
+            <div className="grid lg:grid-cols-3 gap-6 mt-6">
               {/* Alerts */}
-              <div className="glass-panel p-4">
+              <div className="lg:col-span-2 glass-panel p-4">
                 <h2 className="font-orbitron text-lg font-semibold mb-4 flex items-center gap-2">
                   <Bell className="w-5 h-5 text-destructive" />
                   Active Alerts
                 </h2>
-                <div className="grid md:grid-cols-3 gap-3">
+                <div className="grid md:grid-cols-2 gap-3">
                   {mockAlerts.map((alert) => (
                     <div
                       key={alert.id}
@@ -266,6 +267,11 @@ const Dashboard = () => {
                     </div>
                   ))}
                 </div>
+              </div>
+
+              {/* Rewards Widget */}
+              <div className="lg:col-span-1">
+                <RewardsWidget />
               </div>
             </div>
           </div>
