@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from '@vitejs/plugin-react';
 import path from "path";
 
 // It's safe to use a relative base for GitHub Pages and other static hosts.
