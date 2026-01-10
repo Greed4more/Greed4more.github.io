@@ -3,7 +3,7 @@ import { ArrowRight, Recycle, Cpu, MapPin, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
-export function HeroSection() {
+function HeroSection() {
   // initialize scroll reveal globally for elements marked with data-reveal
   useScrollReveal();
 
@@ -107,3 +107,4 @@ export function HeroSection() {
     </section>
   );
 }
+export default HeroSection;
