@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
 import RewardsWidget from '@/components/dashboard/RewardsWidget';
-import BinMapbox from '@/components/dashboard/BinMapbox';
+import BinMapBox from '@/components/dashboard/BinMapBox';
 import { 
   MapPin, 
   Gauge, 
@@ -192,7 +192,7 @@ const Dashboard = () => {
                     <MapPin className="w-5 h-5 text-primary" />
                     Live Map
                   </h2>
-                  <BinMapbox 
+                  <BinMapBox 
                     bins={mockBins}
                     selectedBin={selectedBin}
                     onSelectBin={setSelectedBin}
