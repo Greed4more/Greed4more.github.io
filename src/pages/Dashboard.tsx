@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
 import RewardsWidget from '@/components/dashboard/RewardsWidget';
+import BinMapbox from '@/components/dashboard/BinMapbox';
 import { 
   MapPin, 
   Gauge, 
@@ -12,8 +13,7 @@ import {
   Droplets,
   CircleDot,
   TrendingUp,
-  Clock,
-  Navigation
+  Clock
 } from 'lucide-react';
 
 // Mock data for bins
@@ -192,49 +192,12 @@ const Dashboard = () => {
                     <MapPin className="w-5 h-5 text-primary" />
                     Live Map
                   </h2>
-                  <div className="relative bg-muted/30 rounded-lg h-[400px] flex items-center justify-center border border-border overflow-hidden">
-                    {/* Simulated map background */}
-                    <div className="absolute inset-0 grid-background opacity-50" />
-                    <div className="absolute inset-0 bg-gradient-radial from-primary/10 to-transparent" />
-                    
-                    {/* Map pins */}
-                    {mockBins.map((bin, i) => {
-                      const status = getStatusColor(bin.fill);
-                      return (
-                        <div
-                          key={bin.id}
-                          className="absolute"
-                          style={{
-                            left: `${15 + (i % 3) * 30}%`,
-                            top: `${20 + Math.floor(i / 3) * 40}%`,
-                          }}
-                        >
-                          <div className="relative group cursor-pointer" onClick={() => setSelectedBin(bin.id)}>
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                              status === 'destructive' ? 'bg-destructive' : 
-                              status === 'warning' ? 'bg-warning' : 'bg-success'
-                            }`}>
-                              <Navigation className="w-4 h-4 text-background" />
-                            </div>
-                            {/* Tooltip */}
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-card border border-border rounded-lg text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                              <div className="font-semibold">{bin.id}</div>
-                              <div className="text-muted-foreground">{bin.fill}% full</div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-
-                    {/* Route line when optimizing */}
-                    {isOptimizing && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-background/60">
-                        <div className="text-primary font-orbitron text-lg animate-pulse">
-                          Calculating optimal route...
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                  <BinMapbox 
+                    bins={mockBins}
+                    selectedBin={selectedBin}
+                    onSelectBin={setSelectedBin}
+                    isOptimizing={isOptimizing}
+                  />
                 </div>
               </div>
             </div>
