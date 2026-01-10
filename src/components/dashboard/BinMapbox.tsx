@@ -11,14 +11,14 @@ interface Bin {
   lng: number;
 }
 
-interface BinMapboxProps {
+interface BinMapBoxProps {
   bins: Bin[];
   selectedBin: string | null;
   onSelectBin: (binId: string) => void;
   isOptimizing: boolean;
 }
 
-const BinMapbox: React.FC<BinMapboxProps> = ({ bins, selectedBin, onSelectBin, isOptimizing }) => {
+const BinMapbox: React.FC<BinMapBoxProps> = ({ bins, selectedBin, onSelectBin, isOptimizing }) => {
   const [hoveredBin, setHoveredBin] = useState<string | null>(null);
 
   const getStatusColor = (fill: number) => {
