@@ -23,10 +23,10 @@ const impactMetrics = [
 
 const teamMembers = [
   { name: 'Aditya Singh', role: 'Project Lead', avatar: '👨‍💼' },
-  { name: 'Mainak Roy', role: 'Hardware Engineer', avatar: '👨‍🔧' },
+  { name: 'Mohit Sah', role: 'Hardware Engineer', avatar: '👨‍🔧' },
   { name: 'Aniket Dutta', role: 'ML Engineer', avatar: '👨‍💻' },
   { name: 'Shaunak Sah', role: 'Website Developer', avatar: '👨‍💻' },
-  { name: 'Ranisha Sarkar', role: 'Research Lead', avatar: '👩‍🔬' },
+  
 ];
 
 const references = [
