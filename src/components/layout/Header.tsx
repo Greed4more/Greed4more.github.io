@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, X, Zap, User } from 'lucide-react';
+import { getSession } from '@/lib/faceAuth';
 
 const navLinks = [
   { path: '/', label: 'Home' },
@@ -14,6 +15,7 @@ const navLinks = [
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [session, setSessionState] = useState(() => getSession());
   const location = useLocation();
 
   useEffect(() => {
@@ -26,6 +28,7 @@ const Header = () => {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setSessionState(getSession());
   }, [location]);
 
   return (
@@ -78,9 +81,15 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link to="/auth" className="text-sm font-rajdhani uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors">
-              Login
-            </Link>
+            {session ? (
+              <Link to="/profile" className="flex items-center gap-1.5 text-sm font-rajdhani uppercase tracking-wider text-primary hover:text-primary/80 transition-colors">
+                <User className="w-4 h-4" /> Profile
+              </Link>
+            ) : (
+              <Link to="/auth" className="text-sm font-rajdhani uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors">
+                Login
+              </Link>
+            )}
             <Link to="/dashboard" className="btn-cyber text-sm">
               View Dashboard
             </Link>
