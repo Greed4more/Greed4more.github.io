@@ -77,7 +77,10 @@ const Header = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
+            <Link to="/auth" className="text-sm font-rajdhani uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors">
+              Login
+            </Link>
             <Link to="/dashboard" className="btn-cyber text-sm">
               View Dashboard
             </Link>

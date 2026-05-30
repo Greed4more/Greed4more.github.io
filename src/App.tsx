@@ -10,6 +10,7 @@ import Features from "./pages/Features";
 import Dashboard from "./pages/Dashboard";
 import Rewards from "./pages/Rewards";
 import About from "./pages/About";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/rewards" element={<Rewards />} />
             <Route path="/about" element={<About />} />
+            <Route path="/auth" element={<Auth />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
